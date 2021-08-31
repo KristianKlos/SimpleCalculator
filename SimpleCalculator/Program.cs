@@ -30,24 +30,24 @@ namespace SimpleCalculator
                 switch (selection)
                 {
                     case 1:
-                        
+
                         Addition();
-                        PressToReset();
+                        PressToClear();
                         break;
 
                     case 2:
                         Subtraction();
-                        PressToReset();
+                        PressToClear();
                         break;
 
                     case 3:
                         Multiplication();
-                        PressToReset();
+                        PressToClear();
                         break;
 
                     case 4:
                         Division();
-                        PressToReset();
+                        PressToClear();
                         break;
 
                     case 9:
@@ -58,11 +58,12 @@ namespace SimpleCalculator
 
                     default:
                         Console.WriteLine("Invalid selection");
+                        PressToSelect();
                         break;
                 }
-                
+
             }
-        }//end of main method
+        }//End of main method
 
         //Input
         static string AskUserFor(string what)
@@ -110,7 +111,7 @@ namespace SimpleCalculator
         }
 
         //Multi
-        static void Multiplication ()
+        static void Multiplication()
         {
             double n1 = AskUserForNumber("first number");
             double n2 = AskUserForNumber("second number");
@@ -133,30 +134,29 @@ namespace SimpleCalculator
             }
             Console.WriteLine("---------------------");
             Console.WriteLine($"Result: {n1} / {n2} = " + (n1 / n2));
-       
+
 
         }
 
-        //clearing the last calculation
-        static void PressToReset()
+        //Clearing the last calculation
+        static void PressToClear()
         {
             Console.WriteLine("\nPress any key to clear calculation.");
             Console.ReadKey();
         }
 
-        //exit message
+        //Exit message
         static void PressToExit()
         {
             Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey(true);
         }
 
-
-
-
-
-
-
-
+        //Back to selecting arithmetic
+        static void PressToSelect()
+        {
+            Console.WriteLine("\nPress any key to select again.");
+            Console.ReadKey(true);
+        }
     }
 }
