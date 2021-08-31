@@ -96,8 +96,8 @@ namespace SimpleCalculator
             double n1 = AskUserForNumber("first number");
             double n2 = AskUserForNumber("second number");
 
-            Console.WriteLine("---------------------");
-            Console.WriteLine($"Result: {n1} + {n2} = " + (n1 + n2));
+            Console.WriteLine("---------------------" +
+                            $"\nResult: {n1} + {n2} = " + (n1 + n2));
         }
 
         //Sub
@@ -106,8 +106,8 @@ namespace SimpleCalculator
             double n1 = AskUserForNumber("first number");
             double n2 = AskUserForNumber("second number");
 
-            Console.WriteLine("---------------------");
-            Console.WriteLine($"Result: {n1} - {n2} = " + (n1 - n2));
+            Console.WriteLine("---------------------" +
+                            $"\nResult: {n1} - {n2} = " + (n1 - n2));
         }
 
         //Multi
@@ -116,8 +116,9 @@ namespace SimpleCalculator
             double n1 = AskUserForNumber("first number");
             double n2 = AskUserForNumber("second number");
 
-            Console.WriteLine("---------------------");
-            Console.WriteLine($"Result: {n1} * {n2} = " + (n1 * n2));
+            Console.WriteLine("---------------------" + 
+                            $"\nResult: {n1} * {n2} = " + (n1 * n2));
+
         }
 
         //Div with non-zero devisor check
@@ -126,14 +127,15 @@ namespace SimpleCalculator
             double n1 = AskUserForNumber("first number");
             double n2 = AskUserForNumber("second number");
 
+        //Non-zero devisor check
             while (n2 == 0)
             {
                 Console.WriteLine("I'm afraid i can't let you do that");
                 n2 = AskUserForNumber("second number");
 
             }
-            Console.WriteLine("---------------------");
-            Console.WriteLine($"Result: {n1} / {n2} = " + (n1 / n2));
+            Console.WriteLine("---------------------" +
+                            $"\nResult: {n1} / {n2} = " + (n1 / n2));
 
 
         }
@@ -149,14 +151,14 @@ namespace SimpleCalculator
         static void PressToExit()
         {
             Console.WriteLine("\nPress any key to exit.");
-            Console.ReadKey(true);
+            Console.ReadKey();
         }
 
         //Back to selecting arithmetic
         static void PressToSelect()
         {
             Console.WriteLine("\nPress any key to select again.");
-            Console.ReadKey(true);
+            Console.ReadKey();
         }
     }
 }
