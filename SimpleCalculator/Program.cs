@@ -6,8 +6,10 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
+            //Start the menu loop
             bool menuLoop = true;
 
+            //Visual Menu
             while (menuLoop)
             {
                 Console.Clear();
@@ -24,6 +26,7 @@ namespace SimpleCalculator
 
                 int selection = AskUserForNumber("number");
 
+                //Switch Menu
                 switch (selection)
                 {
                     case 1:
@@ -61,6 +64,7 @@ namespace SimpleCalculator
             }
         }//end of main method
 
+        //Input
         static string AskUserFor(string what)
         {
             Console.Write("\nPlese enter " + what + ": ");
@@ -71,6 +75,7 @@ namespace SimpleCalculator
 
         }
 
+        //Converting to number
         static int AskUserForNumber(string what)
         {
             bool wasNotNumber = true;
@@ -84,6 +89,7 @@ namespace SimpleCalculator
             return number;
         }
 
+        //Add
         static void Addition()
         {
             double n1 = AskUserForNumber("first number");
@@ -93,6 +99,7 @@ namespace SimpleCalculator
             Console.WriteLine($"Result: {n1} + {n2} = " + (n1 + n2));
         }
 
+        //Sub
         static void Subtraction()
         {
             double n1 = AskUserForNumber("first number");
@@ -102,6 +109,7 @@ namespace SimpleCalculator
             Console.WriteLine($"Result: {n1} - {n2} = " + (n1 - n2));
         }
 
+        //Multi
         static void Multiplication ()
         {
             double n1 = AskUserForNumber("first number");
@@ -110,6 +118,8 @@ namespace SimpleCalculator
             Console.WriteLine("---------------------");
             Console.WriteLine($"Result: {n1} * {n2} = " + (n1 * n2));
         }
+
+        //Div with non-zero devisor check
         static void Division()
         {
             double n1 = AskUserForNumber("first number");
@@ -127,12 +137,14 @@ namespace SimpleCalculator
 
         }
 
+        //clearing the last calculation
         static void PressToReset()
         {
             Console.WriteLine("\nPress any key to clear calculation.");
             Console.ReadKey();
         }
 
+        //exit message
         static void PressToExit()
         {
             Console.WriteLine("\nPress any key to exit.");
