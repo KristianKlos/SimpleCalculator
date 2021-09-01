@@ -9,7 +9,7 @@ namespace SimpleCalculator
             //Start the menu loop
             bool menuLoop = true;
 
-            //Visual Menu
+            //Console Menu
             while (menuLoop)
             {
                 Console.Clear();
@@ -53,7 +53,6 @@ namespace SimpleCalculator
                     case 9:
                         menuLoop = false;
                         Console.WriteLine("Shutting down...");
-                        PressToExit();
                         break;
 
                     default:
@@ -83,10 +82,10 @@ namespace SimpleCalculator
             int number = 0;
             do
             {
-                wasNotNumber = !int.TryParse(AskUserFor(what), out number);
+                wasNotNumber = ! int.TryParse(AskUserFor(what), out number);
 
             } while (wasNotNumber);
-
+            
             return number;
         }
 
@@ -144,13 +143,6 @@ namespace SimpleCalculator
         static void PressToClear()
         {
             Console.WriteLine("\nPress any key to clear calculation.");
-            Console.ReadKey();
-        }
-
-        //Exit message
-        static void PressToExit()
-        {
-            Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey();
         }
 
