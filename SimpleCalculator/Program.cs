@@ -4,17 +4,71 @@ namespace SimpleCalculator
 {
     class Program
     {
+        //Main/Start Method
         static void Main(string[] args)
         {
-            //Start the menu loop
-            bool menuLoop = true;
 
-            //Console Menu
+            //Variables
+            bool menuLoop = true;
+            double input1;
+            double input2;
+
+            //Looping the Menu
             while (menuLoop)
             {
                 Console.Clear();
-                Console.WriteLine("Simple Calculator by Kristian Klos"
-                                    + "\n----------------------------------"
+                ConsoleMenu();
+                //selecting switch case
+                double selection = AskUserForNumber("your selection");
+
+                //Switch Menu
+                switch (selection)
+                {
+                    case 1:
+                        TwoNumbers(out input1, out input2);
+                        Addition(input1, input2);
+                        PressToMessage(1);
+                        break;
+
+                    case 2:
+                        TwoNumbers(out input1, out input2);
+                        Subtraction(input1, input2);
+                        PressToMessage(1);
+                        break;
+
+                    case 3:
+                        TwoNumbers(out input1, out input2);
+                        Multiplication(input1, input2);
+                        PressToMessage(1);
+                        break;
+
+                    case 4:
+                        TwoNumbers(out input1, out input2);
+                        Division(input1, input2);
+                        PressToMessage(1);
+                        break;
+
+                    case 9:
+                        menuLoop = false;
+                        PressToMessage(3);
+                        break;
+
+                    default:
+                        PressToMessage(default);
+                        PressToMessage(2);
+
+                        break;
+                }
+
+
+            }
+        }
+
+        //Console Menu
+        static void ConsoleMenu()
+        {
+            Console.WriteLine("Simple Calculator by Kristian Klos v1.1");
+            Console.WriteLine("-----------------------------------------"
                                     + "\nChoose your arithmetic:"
                                     + "\n"
                                     + "\n1. Addition"
@@ -23,46 +77,7 @@ namespace SimpleCalculator
                                     + "\n4. Division"
                                     + "\n"
                                     + "\n9. Exit");
-
-                int selection = AskUserForNumber("number");
-
-                //Switch Menu
-                switch (selection)
-                {
-                    case 1:
-
-                        Addition();
-                        PressToClear();
-                        break;
-
-                    case 2:
-                        Subtraction();
-                        PressToClear();
-                        break;
-
-                    case 3:
-                        Multiplication();
-                        PressToClear();
-                        break;
-
-                    case 4:
-                        Division();
-                        PressToClear();
-                        break;
-
-                    case 9:
-                        menuLoop = false;
-                        Console.WriteLine("Shutting down...");
-                        break;
-
-                    default:
-                        Console.WriteLine("Invalid selection");
-                        PressToSelect();
-                        break;
-                }
-
-            }
-        }//End of main method
+        }
 
         //Input
         static string AskUserFor(string what)
@@ -75,82 +90,99 @@ namespace SimpleCalculator
 
         }
 
-        //Converting to number
+        //Convert to double
         static int AskUserForNumber(string what)
         {
             bool wasNotNumber = true;
-            int number = 0;
+            int input = 0;
             do
             {
-                wasNotNumber = ! int.TryParse(AskUserFor(what), out number);
+
+                wasNotNumber = !int.TryParse(AskUserFor(what), out input);
 
             } while (wasNotNumber);
-            
-            return number;
+
+            return input;
         }
 
-        //Add
-        static void Addition()
+        //Ask for two numbers
+        static void TwoNumbers(out double input1, out double input2)
         {
-            double n1 = AskUserForNumber("first number");
-            double n2 = AskUserForNumber("second number");
+            input1 = AskUserForNumber("first number");
+            input2 = AskUserForNumber("second number");
+        }
 
-            Console.WriteLine("---------------------" +
-                            $"\nResult: {n1} + {n2} = " + (n1 + n2));
+        //Arithmetics-----------------------------------------
+
+        //Add
+        static void Addition(double input1, double input2)
+        {
+            Console.WriteLine("-----------------------"
+                            + $"\nYour result: {input1} + {input2} = " + (input1 + input2));
         }
 
         //Sub
-        static void Subtraction()
+        static void Subtraction(double input1, double input2)
         {
-            double n1 = AskUserForNumber("first number");
-            double n2 = AskUserForNumber("second number");
 
-            Console.WriteLine("---------------------" +
-                            $"\nResult: {n1} - {n2} = " + (n1 - n2));
+            Console.WriteLine("-----------------------"
+                            + $"\nResult: {input1} - {input2} = " + (input1 - input2));
         }
 
         //Multi
-        static void Multiplication()
+        static void Multiplication(double input1, double input2)
         {
-            double n1 = AskUserForNumber("first number");
-            double n2 = AskUserForNumber("second number");
 
-            Console.WriteLine("---------------------" + 
-                            $"\nResult: {n1} * {n2} = " + (n1 * n2));
+
+            Console.WriteLine("-----------------------"
+                            + $"\nResult: {input1} * {input2} = " + (input1 * input2));
 
         }
 
-        //Div with non-zero devisor check
-        static void Division()
+        //Div (zero devisor check)
+        static void Division(double input1, double input2)
         {
-            double n1 = AskUserForNumber("first number");
-            double n2 = AskUserForNumber("second number");
 
-        //Non-zero devisor check
-            while (n2 == 0)
+
+            //Non-zero devisor check
+            while (input2 == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("I'm afraid i can't let you do that");
-                n2 = AskUserForNumber("second number");
+                Console.ResetColor();
+                input2 = AskUserForNumber("second number");
 
             }
-            Console.WriteLine("---------------------" +
-                            $"\nResult: {n1} / {n2} = " + (n1 / n2));
-
-
+            Console.WriteLine("-----------------------"
+                             + $"\nResult: {input1} / {input2} = " + (input1 / input2));
         }
 
-        //Clearing the last calculation
-        static void PressToClear()
+        //Switch with all return-messages
+        static void PressToMessage(int message)
         {
-            Console.WriteLine("\nPress any key to clear calculation.");
-            Console.ReadKey();
+            int press = message;
+            switch (press)
+            {
+                case 1:
+                    Console.WriteLine("\nPress any key to clear calculation.");
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    Console.WriteLine("\nPress any key to go back to selection.");
+                    Console.ReadKey();
+                    break;
+
+                case 3:
+                    Console.WriteLine("Shutting down...");
+                    break;
+                default:
+                    Console.WriteLine("Invalid Selection.");
+                    break;
+
+
+            }
         }
 
-        //Back to selecting arithmetic
-        static void PressToSelect()
-        {
-            Console.WriteLine("\nPress any key to select again.");
-            Console.ReadKey();
-        }
+
     }
 }
